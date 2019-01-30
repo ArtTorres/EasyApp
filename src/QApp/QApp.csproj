@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;netstandard2.0;net40;net45</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <Version>0.1.0-alpha</Version>
+    <Authors>Arturo Torres</Authors>
+    <Company>Arturo Torres</Company>
+    <Description>A light console framework.</Description>
+    <Copyright>Copyright ©2019 ArturoTorres</Copyright>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>console framework widgets</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/arttorres/QApp</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/arttorres/QApp</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/arttorres/QApp/master/LICENSE</PackageLicenseUrl>
+    <PackageId>ArturoTorres.QApp</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ArturoTorres.MagnetArgs" Version="0.2.2-beta" />
+    <PackageReference Include="ArturoTorres.TWidgets" Version="0.2.0-alpha" />
+  </ItemGroup>
+
+</Project>
