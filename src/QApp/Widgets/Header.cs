@@ -11,7 +11,7 @@ namespace QApp.Widgets
             this.Margin.All = 1;
             this.Margin.Top = 0;
             this.Padding.All = 1;
-            this.Lines = AssemblyDescription.Description;
+            this.Items = AssemblyDescription.Description;
         }
 
         public override void Draw(Graphics g)

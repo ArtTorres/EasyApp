@@ -1,6 +1,5 @@
 ﻿using QApp.Documentation;
 using QApp.Util;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +27,6 @@ namespace QApp.Widgets
             foreach (var line in lines)
             {
                 g.Draw(new Text(line, this.Margin));
-                g.Canvas.ColumnCursor = 0;
             }
         }
 
@@ -57,7 +55,7 @@ namespace QApp.Widgets
                 var option = helpItem.GetOption();
                 if (null != option)
                 {
-                    output.AppendFormat("--{0}",option.Name);
+                    output.AppendFormat("--{0}", option.Name);
 
                     if (!string.IsNullOrEmpty(option.Alias))
                         output.AppendFormat(", -{0}", option.Alias);
@@ -73,15 +71,15 @@ namespace QApp.Widgets
                     if (!string.IsNullOrEmpty(option.DefaultValue))
                         output.AppendFormat(" (Default:{0})", option.DefaultValue);
 
-                    output.Append('\n');
+                    output.Append("\r\n");
                 }
 
-                output.AppendLine("\t{0}", helpItem.Description);
+                output.AppendLine("   {0}", helpItem.Description);
                 output.AppendLine("Example:");
-                output.AppendLine("\t{0} {1}", assemblyFile, helpItem.Example);
+                output.AppendLine("   {0} {1}", assemblyFile, helpItem.Example);
             }
 
-            return output.ToString().Split('\n');
+            return output.ToString().Replace("\r", "").Split('\n');
         }
     }
 

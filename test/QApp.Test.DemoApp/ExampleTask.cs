@@ -1,5 +1,6 @@
 ﻿using MagnetArgs;
 using QApp.Documentation;
+using QApp.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace QApp.Test.DemoApp
 {
     class ExampleOptions : MagnetOption
     {
-        [Arg("output-directory", Alias = "out")]
+        [Arg("output-directory", Alias = "out"), IsRequired]
         [Help("Sets the output directory.", Example = "--output-directory <path>", Group = "Authentication", Order = 2)]
         public string OutputDirectory { get; set; }
     }
@@ -24,7 +25,8 @@ namespace QApp.Test.DemoApp
 
         public override void Start()
         {
-            Console.WriteLine("Task Execution");
+            this.OnStarted("Task Execution");
+            this.OnNotification(MessageType.Text, "Output Directory: {0}", _options.OutputDirectory);
         }
 
         public void Dispose()

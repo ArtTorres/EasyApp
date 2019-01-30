@@ -1,4 +1,4 @@
-using System;
+
 namespace QApp.Events
 {
     public enum MessageType

@@ -21,7 +21,7 @@ namespace QApp.Util
 
                 if (null != attribute)
                 {
-                    var property = (IOption)propertyInfo.GetValue(obj);
+                    var property = (IOption)propertyInfo.GetValue(obj, null);
 
                     if (property.Exceptions.Count() > 0)
                         output.AddRange(property.Exceptions);

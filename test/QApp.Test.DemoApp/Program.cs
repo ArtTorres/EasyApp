@@ -9,7 +9,7 @@ namespace QApp.Test.DemoApp
     {
         private class DemoOptions : MagnetOption
         {
-            [Arg("directory", Alias = "dir")]
+            [Arg("directory", Alias = "dir"), IsRequired]
             [Help("Sets the input directory.", Example = "--directory <path>", Group = "Authentication", Order = 1)]
             public string Directory { get; set; }
         }
@@ -34,7 +34,7 @@ namespace QApp.Test.DemoApp
 
         static void Main(string[] args)
         {
-            args = new string[] { "-h" };
+            args = new string[] { "-dir", "C:\\demo", "-out", "C:\\demo" };
             var application = new Application();
             application.Execute(args);
             Console.ReadKey();

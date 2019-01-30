@@ -54,20 +54,23 @@ namespace QApp
 
         public Widget Header { get; set; }
         public Widget Help { get; set; }
-        public Widget Notification { get; set; }
+        //public Notification Notification { get; set; }
+        //public Widget InputExceptions { get; set; }
 
         [OptionSet]
         public ApplicationOptions AppOptions { get; set; }
 
         public QApplication()
         {
-            _initialColor = Console.ForegroundColor;
+            //_initialColor = Console.ForegroundColor;
 
             this.DisplayHeader = true;
             this.DisplayEnvironment = true;
             this.DisplayArguments = true;
 
             this.Header = new Header("app_header");
+            //this.Notification = new Notification("app_notification");
+            //this.Notification.Margin.Left = 1;
         }
 
         public void ShowHeader()
@@ -84,12 +87,19 @@ namespace QApp
 
         public bool ShowInputExceptions()
         {
-            var errors = ExceptionUtils.GetInputExceptions(this);
+            var errors = ExceptionUtils.GetInputExceptions(this).Select(ex => ex.Message).ToArray();
             bool found = errors.Count() > 0;
 
-            foreach (var ex in errors)
+            if (found)
             {
-                this.Print(MessageType.Error, MessagePriority.High, ex.Message);
+                var widget = new BulletList("app_errors")
+                {
+                    Items = errors,
+                    ForegroundColor = WidgetColor.Red
+                };
+                widget.Margin.All = 1;
+
+                WidgetPlayer.Mount(widget);
             }
 
             return found;
@@ -116,6 +126,8 @@ namespace QApp
 
                 Magnet.Magnetize(this, args);
 
+                //WidgetPlayer.Mount(this.Notification);
+
                 if (this.DisplayArguments)
                     this.ShowArguments(args);
 
@@ -128,7 +140,7 @@ namespace QApp
                     if (this.DisplayEnvironment)
                         this.ShowEnvironment();
 
-                    Console.ForegroundColor = _initialColor;
+                    //Console.ForegroundColor = _initialColor;
 
                     this.ExecutionProcess();
                 }
@@ -139,7 +151,7 @@ namespace QApp
             }
             finally
             {
-                Console.ForegroundColor = _initialColor;
+                //Console.ForegroundColor = _initialColor;
             }
         }
 
@@ -165,35 +177,49 @@ namespace QApp
             // skip message if lower priority
             if (this.AppOptions.MessagePriority < message.Priority) return;
 
-            this.SetConsoleColor(message.MessageType);
-
-            if (this._prevProgressMessage && message.MessageType != MessageType.Progress)
+            if (MessageType.Progress == message.MessageType)
             {
-                Console.Write("\n");
+                this.SetConsoleColor(message.MessageType);
+
+                if (this._prevProgressMessage && message.MessageType != MessageType.Progress)
+                {
+                    Console.Write("\n");
+                }
+
+                switch (message.MessageType)
+                {
+                    case MessageType.Data:
+                    case MessageType.Resume:
+                    case MessageType.Highlight:
+                    case MessageType.Text:
+                    case MessageType.Help:
+                        Console.WriteLine("{0}", message.Text);
+                        this._prevProgressMessage = false;
+                        break;
+                    case MessageType.Progress:
+                        Console.Write("\r{0}", message.Text);
+                        this._prevProgressMessage = true;
+                        break;
+                    case MessageType.Arguments:
+                        Console.WriteLine("[ARGS] {0}", message.Text);
+                        this._prevProgressMessage = false;
+                        break;
+                    default:
+                        Console.WriteLine("[{0}] {1}", message.MessageType.ToString().ToUpper(), message.Text);
+                        this._prevProgressMessage = false;
+                        break;
+                }
             }
-
-            switch (message.MessageType)
+            else
             {
-                case MessageType.Data:
-                case MessageType.Resume:
-                case MessageType.Highlight:
-                case MessageType.Text:
-                case MessageType.Help:
-                    Console.WriteLine("{0}", message.Text);
-                    this._prevProgressMessage = false;
-                    break;
-                case MessageType.Progress:
-                    Console.Write("\r{0}", message.Text);
-                    this._prevProgressMessage = true;
-                    break;
-                case MessageType.Arguments:
-                    Console.WriteLine("[ARGS] {0}", message.Text);
-                    this._prevProgressMessage = false;
-                    break;
-                default:
-                    Console.WriteLine("[{0}] {1}", message.MessageType.ToString().ToUpper(), message.Text);
-                    this._prevProgressMessage = false;
-                    break;
+                var widget = new Notification("app_notification")
+                {
+                    Message = message
+                };
+                widget.Margin.Left = 1;
+
+                WidgetPlayer.Mount(widget);
+                //this.Notification.Message = message;
             }
         }
 
@@ -235,13 +261,16 @@ namespace QApp
             task.Completed += this.OnTaskCompleted;
             task.Failed += this.OnTaskFailed;
             task.Progress += this.OnTaskProgress;
+            task.Notification += this.OnTaskNotification;
         }
+
         protected void ForgetTask(QTask task)
         {
             task.Started -= this.OnTaskStarted;
             task.Completed -= this.OnTaskCompleted;
             task.Failed -= this.OnTaskFailed;
             task.Progress -= this.OnTaskProgress;
+            task.Notification -= this.OnTaskNotification;
         }
 
         protected void OnTaskProgress(object sender, MessageEventArgs e)
@@ -260,6 +289,11 @@ namespace QApp
         }
 
         protected void OnTaskStarted(object sender, MessageEventArgs e)
+        {
+            this.Print(e.Message);
+        }
+
+        protected void OnTaskNotification(object sender, MessageEventArgs e)
         {
             this.Print(e.Message);
         }
