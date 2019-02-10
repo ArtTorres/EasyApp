@@ -5,9 +5,10 @@ using QApp.Options;
 using QApp.Util;
 using QApp.Widgets;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using TWidgets;
+using TWidgets.Core;
+using TWidgets.Util;
 using TWidgets.Widgets;
 
 namespace QApp

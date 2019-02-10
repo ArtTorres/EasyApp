@@ -1,6 +1,7 @@
 ﻿using QApp.Events;
+using TWidgets.Core;
 using TWidgets.Core.Drawing;
-using TWidgets.Widgets;
+using TWidgets.Util;
 
 namespace QApp.Widgets
 {
