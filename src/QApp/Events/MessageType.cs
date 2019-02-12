@@ -12,6 +12,7 @@ namespace QApp.Events
         Highlight,
         Text,
         Arguments,
+        Environment,
         Help
     }
 }

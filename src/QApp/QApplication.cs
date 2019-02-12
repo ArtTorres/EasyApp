@@ -1,7 +1,6 @@
 using MagnetArgs;
 using QApp.Documentation;
 using QApp.Events;
-using QApp.Options;
 using QApp.Util;
 using QApp.Widgets;
 using System;
@@ -110,7 +109,7 @@ namespace QApp
 
         public void ShowEnvironment()
         {
-            this.Print(MessageType.Warning, MessagePriority.High, "Environment Version: {0}", Environment.Version.ToString());
+            this.Print(MessageType.Environment, MessagePriority.High, "Environment Version: {0}", Environment.Version.ToString());
         }
 
         public void ShowArguments(string[] args)

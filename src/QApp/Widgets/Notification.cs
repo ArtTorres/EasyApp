@@ -48,9 +48,10 @@ namespace QApp.Widgets
                 case MessageType.Highlight:
                 case MessageType.Text:
                 case MessageType.Help:
+                case MessageType.Environment:
                     return message.Text;
                 case MessageType.Arguments:
-                    return string.Format("[ARGS] {0}", message.Text);
+                    return string.Format("[IN] {0}", message.Text);
                 default:
                     return string.Format(
                         "[{0}] {1}",
@@ -68,6 +69,7 @@ namespace QApp.Widgets
                     this.ForegroundColor = WidgetColor.Red;
                     break;
                 case MessageType.Warning:
+                case MessageType.Environment:
                     this.ForegroundColor = WidgetColor.Yellow;
                     break;
                 case MessageType.Data:
