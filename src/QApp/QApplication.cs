@@ -1,5 +1,4 @@
 using MagnetArgs;
-using QApp.Documentation;
 using QApp.Events;
 using QApp.Util;
 using QApp.Widgets;
@@ -11,35 +10,6 @@ using TWidgets.Widgets;
 
 namespace QApp
 {
-    public class MessagePriorityParser : IParser
-    {
-        public object Parse(string value)
-        {
-            switch (value.ToLowerInvariant())
-            {
-                case "high":
-                    return MessagePriority.High;
-                case "medium":
-                    return MessagePriority.Medium;
-                case "low":
-                    return MessagePriority.Low;
-                default:
-                    throw new Exception(string.Format("Value {0} for MessagePriority not found.", value));
-            }
-        }
-    }
-
-    public class ApplicationOptions : MagnetOption
-    {
-        [Arg("help", Alias = "h"), IfPresent]
-        [Help("Displays the application help instructions.", Example = "--help", Group = "Help", Order = 0)]
-        public bool ShowHelp { get; set; }
-
-        [Arg("log", Alias = "l"), Parser(typeof(MessagePriorityParser)), Default("low")]
-        [Help("Displays the logging options.", Example = "--log", Group = "Help", Order = 1)]
-        public MessagePriority MessagePriority { get; set; }
-    }
-
     public abstract class QApplication
     {
         protected ConsoleColor DefaultColor = ConsoleColor.Gray;
