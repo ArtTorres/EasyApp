@@ -7,7 +7,6 @@ using QApp.Widgets;
 using System;
 using System.Linq;
 using TWidgets;
-using TWidgets.Core;
 using TWidgets.Util;
 using TWidgets.Widgets;
 
@@ -45,8 +44,6 @@ namespace QApp
     public abstract class QApplication
     {
         protected ConsoleColor DefaultColor = ConsoleColor.Gray;
-
-        protected bool _prevProgressMessage = false;
         protected ConsoleColor _initialColor;
 
         public bool DisplayHeader { get; set; }
@@ -55,23 +52,30 @@ namespace QApp
 
         public Widget Header { get; set; }
         public Widget Help { get; set; }
-        //public Notification Notification { get; set; }
-        //public Widget InputExceptions { get; set; }
+        public Notification Notification { get; set; }
+        public ProgressChar Progress { get; set; }
+
+        protected bool _prevProgress = false;
+        protected bool _prevNotification = false;
 
         [OptionSet]
         public ApplicationOptions AppOptions { get; set; }
 
         public QApplication()
         {
-            //_initialColor = Console.ForegroundColor;
-
             this.DisplayHeader = true;
             this.DisplayEnvironment = true;
             this.DisplayArguments = true;
 
             this.Header = new Header("app_header");
-            //this.Notification = new Notification("app_notification");
-            //this.Notification.Margin.Left = 1;
+            this.Help = new Help("app_help", HelpUtils.GetHelpAttributes(this));
+
+            this.Notification = new Notification("app_notification");
+            this.Notification.Margin.Left = 1;
+
+            this.Progress = new ProgressChar("app_progress");
+            this.Progress.ForegroundColor = WidgetColor.White;
+            this.Progress.Margin.Left = 1;
         }
 
         public void ShowHeader()
@@ -81,8 +85,6 @@ namespace QApp
 
         public void ShowHelp()
         {
-            this.Help = new Help("app_help", HelpUtils.GetHelpAttributes(this));
-
             WidgetPlayer.Mount(this.Help);
         }
 
@@ -127,8 +129,6 @@ namespace QApp
 
                 Magnet.Magnetize(this, args);
 
-                //WidgetPlayer.Mount(this.Notification);
-
                 if (this.DisplayArguments)
                     this.ShowArguments(args);
 
@@ -141,8 +141,6 @@ namespace QApp
                     if (this.DisplayEnvironment)
                         this.ShowEnvironment();
 
-                    //Console.ForegroundColor = _initialColor;
-
                     this.ExecutionProcess();
                 }
             }
@@ -150,18 +148,9 @@ namespace QApp
             {
                 this.Print(MessageType.Error, MessagePriority.High, ex.Message);
             }
-            finally
-            {
-                //Console.ForegroundColor = _initialColor;
-            }
         }
 
         #region Print
-
-        protected void Print(string message, params object[] arg)
-        {
-            Console.WriteLine(message, arg);
-        }
 
         protected void Print(MessageType type, MessagePriority priority, string message, params object[] arg)
         {
@@ -179,77 +168,27 @@ namespace QApp
             if (this.AppOptions.MessagePriority < message.Priority) return;
 
             if (MessageType.Progress == message.MessageType)
-            {
-                this.SetConsoleColor(message.MessageType);
+            { // Display progress message
+                this.Progress.Text = message.Text;
 
-                if (this._prevProgressMessage && message.MessageType != MessageType.Progress)
+                if (!_prevProgress)
                 {
-                    Console.Write("\n");
-                }
-
-                switch (message.MessageType)
-                {
-                    case MessageType.Data:
-                    case MessageType.Resume:
-                    case MessageType.Highlight:
-                    case MessageType.Text:
-                    case MessageType.Help:
-                        Console.WriteLine("{0}", message.Text);
-                        this._prevProgressMessage = false;
-                        break;
-                    case MessageType.Progress:
-                        Console.Write("\r{0}", message.Text);
-                        this._prevProgressMessage = true;
-                        break;
-                    case MessageType.Arguments:
-                        Console.WriteLine("[ARGS] {0}", message.Text);
-                        this._prevProgressMessage = false;
-                        break;
-                    default:
-                        Console.WriteLine("[{0}] {1}", message.MessageType.ToString().ToUpper(), message.Text);
-                        this._prevProgressMessage = false;
-                        break;
+                    WidgetPlayer.Mount(this.Progress);
+                    _prevProgress = true;
+                    _prevNotification = false;
                 }
             }
             else
-            {
-                var widget = new Notification("app_notification")
+            { // Display notification message
+                this.Notification.Message = message;
+
+                if (!_prevNotification)
                 {
-                    Message = message
-                };
-                widget.Margin.Left = 1;
-
-                WidgetPlayer.Mount(widget);
-                //this.Notification.Message = message;
+                    WidgetPlayer.Mount(this.Notification);
+                    _prevNotification = true;
+                    _prevProgress = false;
+                }
             }
-        }
-
-        protected void SetConsoleColor(MessageType type)
-        {
-            switch (type)
-            {
-                case MessageType.Error:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    return;
-                case MessageType.Warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    return;
-                case MessageType.Data:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    return;
-                case MessageType.Resume:
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    return;
-                case MessageType.Help:
-                case MessageType.Progress:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    return;
-                case MessageType.Arguments:
-                case MessageType.Highlight:
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    return;
-            }
-            Console.ForegroundColor = this.DefaultColor;
         }
 
         #endregion

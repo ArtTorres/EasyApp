@@ -3,8 +3,8 @@ using QApp.Util;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TWidgets.Core;
 using TWidgets.Core.Drawing;
+using TWidgets.Widgets;
 
 namespace QApp.Widgets
 {

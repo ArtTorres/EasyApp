@@ -1,7 +1,7 @@
 ﻿using QApp.Events;
-using TWidgets.Core;
 using TWidgets.Core.Drawing;
 using TWidgets.Util;
+using TWidgets.Widgets;
 
 namespace QApp.Widgets
 {
@@ -21,7 +21,7 @@ namespace QApp.Widgets
             }
         }
 
-        public WidgetColor DefaultColor { get; set; } = WidgetColor.Gray;
+        public WidgetColor DefaultColor { get; set; } = WidgetColor.System;
 
         public Notification(string id) : base(id)
         { }

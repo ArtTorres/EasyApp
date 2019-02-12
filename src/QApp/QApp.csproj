@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;netstandard2.0;net40;net45</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
-    <Version>0.1.0-alpha</Version>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <Version>0.2.0-alpha</Version>
     <Authors>Arturo Torres</Authors>
     <Company>Arturo Torres</Company>
     <Description>A light console framework.</Description>
@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="MagnetArgs" Version="0.2.3-beta" />
-    <PackageReference Include="TWidgets" Version="0.3.0-alpha" />
+    <PackageReference Include="TWidgets" Version="0.4.0-alpha" />
   </ItemGroup>
 
 </Project>
