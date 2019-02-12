@@ -2,8 +2,6 @@
 using QApp.Documentation;
 using QApp.Events;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QApp.Test.DemoApp
 {
@@ -27,6 +25,14 @@ namespace QApp.Test.DemoApp
         {
             this.OnStarted("Task Execution");
             this.OnNotification(MessageType.Text, "Output Directory: {0}", _options.OutputDirectory);
+
+            for (int i = 0; i < 10;)
+            {
+                this.OnProgress(MessageType.Progress, $"Count: {++i}");
+                System.Threading.Thread.Sleep(500);
+            }
+
+            this.OnNotification(MessageType.Text, "End of application");
         }
 
         public void Dispose()

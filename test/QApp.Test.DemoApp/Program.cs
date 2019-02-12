@@ -1,7 +1,6 @@
-﻿using System;
-using MagnetArgs;
-using QApp;
+﻿using MagnetArgs;
 using QApp.Documentation;
+using System;
 
 namespace QApp.Test.DemoApp
 {
