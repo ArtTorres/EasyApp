@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MagnetArgs" Version="0.2.3-beta" />
+    <PackageReference Include="MagnetArgs" Version="0.2.4-beta" />
     <PackageReference Include="TWidgets" Version="0.4.0-alpha" />
   </ItemGroup>
 

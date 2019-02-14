@@ -18,9 +18,8 @@ namespace QApp.Util
             for (int i = 0; i < properties.Length; i++)
             {
                 PropertyInfo propertyInfo = properties[i];
-                OptionSetAttribute attribute = GetAttribute<OptionSetAttribute>(propertyInfo);
 
-                if (null != attribute)
+                if (typeof(IMagnetSet).IsAssignableFrom(propertyInfo.PropertyType))
                 {
                     var o = (IEnumerable<HelpAttribute>)typeof(HelpUtils)
                     .GetMethod("GetHelpFromOptionSet")
@@ -34,12 +33,12 @@ namespace QApp.Util
             return output;
         }
 
-        public static IEnumerable<HelpAttribute> GetHelpFromOptionSet<T>() where T : IOption, new()
+        public static IEnumerable<HelpAttribute> GetHelpFromOptionSet<T>() where T : IMagnetSet, new()
         {
             return GetHelpAttributes(new T());
         }
 
-        private static IEnumerable<HelpAttribute> GetHelpAttributes<T>(T obj) where T : IOption
+        private static IEnumerable<HelpAttribute> GetHelpAttributes<T>(T obj) where T : IMagnetSet
         {
             var helpItems = new List<HelpAttribute>();
 

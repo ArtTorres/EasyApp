@@ -5,7 +5,7 @@ using QApp.Parsers;
 
 namespace QApp
 {
-    public class ApplicationOptions : MagnetOption
+    public class ApplicationOptions : MagnetSet
     {
         [Arg("help", Alias = "h"), IfPresent]
         [Help("Displays the application help instructions.", Example = "--help", Group = "Help", Order = 0)]

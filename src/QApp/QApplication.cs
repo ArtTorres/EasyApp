@@ -27,7 +27,6 @@ namespace QApp
         protected bool _prevProgress = false;
         protected bool _prevNotification = false;
 
-        [OptionSet]
         public ApplicationOptions AppOptions { get; set; }
 
         public QApplication()
