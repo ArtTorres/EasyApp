@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\QApp\QApp.csproj" />
+    <ProjectReference Include="..\..\src\EasyApp\EasyApp.csproj" />
   </ItemGroup>
 
 </Project>

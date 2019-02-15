@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace QApp.Test
+namespace EasyApp.Test
 {
     public class UnitTest1
     {

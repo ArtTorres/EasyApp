@@ -1,8 +1,6 @@
-using System;
-
-namespace QApp.Events
+namespace EasyApp.Events
 {
-    public enum MessagePriority
+    public enum Priority
     {
         High = 1,
         Medium = 2,

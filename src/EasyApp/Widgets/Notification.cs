@@ -1,14 +1,14 @@
-﻿using QApp.Events;
+﻿using EasyApp.Events;
 using TWidgets.Core.Drawing;
 using TWidgets.Util;
 using TWidgets.Widgets;
 
-namespace QApp.Widgets
+namespace EasyApp.Widgets
 {
     public class Notification : Widget
     {
-        private QMessage _message;
-        public QMessage Message
+        private EasyMessage _message;
+        public EasyMessage Message
         {
             get
             {
@@ -39,7 +39,7 @@ namespace QApp.Widgets
             ));
         }
 
-        private string FormatMessage(QMessage message)
+        private string FormatMessage(EasyMessage message)
         {
             switch (message.MessageType)
             {

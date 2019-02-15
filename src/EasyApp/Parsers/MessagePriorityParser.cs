@@ -1,8 +1,8 @@
 ﻿using MagnetArgs;
-using QApp.Events;
+using EasyApp.Events;
 using System;
 
-namespace QApp.Parsers
+namespace EasyApp.Parsers
 {
     public class MessagePriorityParser : IParser
     {
@@ -11,11 +11,11 @@ namespace QApp.Parsers
             switch (value.ToLowerInvariant())
             {
                 case "high":
-                    return MessagePriority.High;
+                    return Priority.High;
                 case "medium":
-                    return MessagePriority.Medium;
+                    return Priority.Medium;
                 case "low":
-                    return MessagePriority.Low;
+                    return Priority.Low;
                 default:
                     throw new Exception(string.Format("Value {0} for MessagePriority not found.", value));
             }

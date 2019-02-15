@@ -7,15 +7,16 @@
     <Version>0.2.0-alpha</Version>
     <Authors>Arturo Torres</Authors>
     <Company>Arturo Torres</Company>
-    <Description>A light console framework.</Description>
+    <Description>A simple console framework.</Description>
     <Copyright>Copyright ©2019 ArturoTorres</Copyright>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>console framework widgets</PackageTags>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
-    <RepositoryUrl>https://github.com/arttorres/QApp</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/arttorres/QApp</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/arttorres/QApp/master/LICENSE</PackageLicenseUrl>
-    <PackageId>ArturoTorres.QApp</PackageId>
+    <PackageReleaseNotes>Re-Brand
+Minor improvements</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/arttorres/EasyApp</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/arttorres/EasyApp</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/arttorres/EasyApp/master/LICENSE</PackageLicenseUrl>
+    <PackageId>EasyApp</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

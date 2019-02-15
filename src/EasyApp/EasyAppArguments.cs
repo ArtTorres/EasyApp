@@ -1,11 +1,11 @@
 ﻿using MagnetArgs;
-using QApp.Documentation;
-using QApp.Events;
-using QApp.Parsers;
+using EasyApp.Documentation;
+using EasyApp.Events;
+using EasyApp.Parsers;
 
-namespace QApp
+namespace EasyApp
 {
-    public class ApplicationOptions : MagnetSet
+    public class EasyAppArguments : MagnetSet
     {
         [Arg("help", Alias = "h"), IfPresent]
         [Help("Displays the application help instructions.", Example = "--help", Group = "Help", Order = 0)]
@@ -13,6 +13,6 @@ namespace QApp
 
         [Arg("log", Alias = "l"), Parser(typeof(MessagePriorityParser)), Default("low")]
         [Help("Displays the logging options.", Example = "--log", Group = "Help", Order = 1)]
-        public MessagePriority MessagePriority { get; set; }
+        public Priority MessagePriority { get; set; }
     }
 }

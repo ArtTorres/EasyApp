@@ -1,10 +1,10 @@
 using System;
 
-namespace QApp.Events
+namespace EasyApp.Events
 {
     public class MessageEventArgs : EventArgs
     {
-        public QMessage Message
+        public EasyMessage Message
         {
             get;
             private set;
@@ -15,14 +15,14 @@ namespace QApp.Events
         {
         }
 
-        public MessageEventArgs(MessageType type, MessagePriority priority, string message, params object[] args)
+        public MessageEventArgs(MessageType type, Priority priority, string message, params object[] args)
             : this(string.Format(message, args), type, priority)
         {
         }
 
-        public MessageEventArgs(string message, MessageType type = MessageType.Info, MessagePriority priority = MessagePriority.High)
+        public MessageEventArgs(string message, MessageType type = MessageType.Info, Priority priority = Priority.High)
         {
-            this.Message = new QMessage()
+            this.Message = new EasyMessage()
             {
                 Text = message,
                 MessageType = type,

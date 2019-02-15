@@ -1,19 +1,20 @@
-using System;
-namespace QApp.Events
+namespace EasyApp.Events
 {
-	public class QMessage
+    public class EasyMessage
 	{
 		public MessageType MessageType
 		{
 			get;
 			set;
 		}
+
 		public string Text
 		{
 			get;
 			set;
 		}
-		public MessagePriority Priority
+
+		public Priority Priority
 		{
 			get;
 			set;

@@ -1,18 +1,18 @@
-﻿using MagnetArgs;
-using QApp.Documentation;
-using QApp.Events;
+﻿using EasyApp.Documentation;
+using EasyApp.Events;
+using MagnetArgs;
 using System;
 
-namespace QApp.Test.DemoApp
+namespace EasyApp.Test.DemoApp
 {
-    class ExampleOptions : MagnetOption
+    class ExampleOptions : MagnetSet
     {
         [Arg("output-directory", Alias = "out"), IsRequired]
         [Help("Sets the output directory.", Example = "--output-directory <path>", Group = "Authentication", Order = 2)]
         public string OutputDirectory { get; set; }
     }
 
-    class ExampleTask : QTask, IDisposable
+    class ExampleTask : EasyTask, IDisposable
     {
         private ExampleOptions _options;
 

@@ -1,11 +1,11 @@
 using System;
 
-namespace QApp.Documentation
+namespace EasyApp.Documentation
 {
     [AttributeUsage(AttributeTargets.Property, Inherited = true)]
     public class HelpAttribute : Attribute
     {
-        private OptionInfo _option;
+        private ArgumentInfo _option;
 
         public string Description
         {
@@ -34,12 +34,12 @@ namespace QApp.Documentation
             this.Order = 0;
         }
 
-        public void SetOption(OptionInfo option)
+        public void SetOption(ArgumentInfo option)
         {
             _option = option;
         }
 
-        public OptionInfo GetOption()
+        public ArgumentInfo GetOption()
         {
             return _option;
         }

@@ -1,7 +1,7 @@
-﻿using QApp.Util;
+﻿using EasyApp.Util;
 using TWidgets.Widgets;
 
-namespace QApp.Widgets
+namespace EasyApp.Widgets
 {
     public class Header: Marquee
     {

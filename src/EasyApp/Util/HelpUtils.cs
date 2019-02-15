@@ -1,11 +1,11 @@
 using MagnetArgs;
-using QApp.Documentation;
+using EasyApp.Documentation;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace QApp.Util
+namespace EasyApp.Util
 {
     public static class HelpUtils
     {
@@ -57,7 +57,7 @@ namespace QApp.Util
 
                     if (help != null)
                     {
-                        help.SetOption(new OptionInfo()
+                        help.SetOption(new ArgumentInfo()
                         {
                             Name = attribute.Name,
                             Alias = attribute.Alias,

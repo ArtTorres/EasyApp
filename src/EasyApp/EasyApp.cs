@@ -1,16 +1,16 @@
 using MagnetArgs;
-using QApp.Events;
-using QApp.Util;
-using QApp.Widgets;
+using EasyApp.Events;
+using EasyApp.Util;
+using EasyApp.Widgets;
 using System;
 using System.Linq;
 using TWidgets;
 using TWidgets.Util;
 using TWidgets.Widgets;
 
-namespace QApp
+namespace EasyApp
 {
-    public abstract class QApplication
+    public abstract class EasyApp
     {
         protected ConsoleColor DefaultColor = ConsoleColor.Gray;
         protected ConsoleColor _initialColor;
@@ -27,21 +27,21 @@ namespace QApp
         protected bool _prevProgress = false;
         protected bool _prevNotification = false;
 
-        public ApplicationOptions AppOptions { get; set; }
+        public EasyAppArguments AppOptions { get; set; }
 
-        public QApplication()
+        public EasyApp()
         {
             this.DisplayHeader = true;
             this.DisplayEnvironment = true;
             this.DisplayArguments = true;
 
-            this.Header = new Header("app_header");
-            this.Help = new Help("app_help", HelpUtils.GetHelpAttributes(this));
+            this.Header = new Header("easy_header");
+            this.Help = new Help("easy_help", HelpUtils.GetHelpAttributes(this));
 
-            this.Notification = new Notification("app_notification");
+            this.Notification = new Notification("easy_notification");
             this.Notification.Margin.Left = 1;
 
-            this.Progress = new ProgressChar("app_progress");
+            this.Progress = new ProgressChar("easy_progress");
             this.Progress.ForegroundColor = WidgetColor.White;
             this.Progress.Margin.Left = 1;
         }
@@ -63,7 +63,7 @@ namespace QApp
 
             if (found)
             {
-                var widget = new BulletList("app_errors")
+                var widget = new BulletList("easy_errors")
                 {
                     Items = errors,
                     ForegroundColor = WidgetColor.Red
@@ -78,12 +78,12 @@ namespace QApp
 
         public void ShowEnvironment()
         {
-            this.Print(MessageType.Environment, MessagePriority.High, "Environment Version: {0}", Environment.Version.ToString());
+            this.Print(MessageType.Environment, Priority.High, "Environment Version: {0}", Environment.Version.ToString());
         }
 
         public void ShowArguments(string[] args)
         {
-            this.Print(MessageType.Arguments, MessagePriority.High, string.Join(" ", args));
+            this.Print(MessageType.Arguments, Priority.High, string.Join(" ", args));
         }
 
         public abstract void ExecutionProcess();
@@ -114,15 +114,15 @@ namespace QApp
             }
             catch (Exception ex)
             {
-                this.Print(MessageType.Error, MessagePriority.High, ex.Message);
+                this.Print(MessageType.Error, Priority.High, ex.Message);
             }
         }
 
         #region Print
 
-        protected void Print(MessageType type, MessagePriority priority, string message, params object[] arg)
+        protected void Print(MessageType type, Priority priority, string message, params object[] arg)
         {
-            this.Print(new QMessage
+            this.Print(new EasyMessage
             {
                 MessageType = type,
                 Text = string.Format(message, arg),
@@ -130,7 +130,7 @@ namespace QApp
             });
         }
 
-        protected void Print(QMessage message)
+        protected void Print(EasyMessage message)
         {
             // skip message if lower priority
             if (this.AppOptions.MessagePriority < message.Priority) return;
@@ -163,7 +163,7 @@ namespace QApp
 
         #region Events
 
-        protected void MonitorTask(QTask task)
+        protected void MonitorTask(EasyTask task)
         {
             task.Started += this.OnTaskStarted;
             task.Completed += this.OnTaskCompleted;
@@ -172,7 +172,7 @@ namespace QApp
             task.Notification += this.OnTaskNotification;
         }
 
-        protected void ForgetTask(QTask task)
+        protected void ForgetTask(EasyTask task)
         {
             task.Started -= this.OnTaskStarted;
             task.Completed -= this.OnTaskCompleted;
