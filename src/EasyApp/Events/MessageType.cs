@@ -1,5 +1,5 @@
 
-namespace QApp.Events
+namespace EasyApp.Events
 {
     public enum MessageType
     {
@@ -12,6 +12,7 @@ namespace QApp.Events
         Highlight,
         Text,
         Arguments,
+        Environment,
         Help
     }
 }

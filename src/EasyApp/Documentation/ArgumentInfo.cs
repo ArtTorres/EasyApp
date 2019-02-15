@@ -1,6 +1,6 @@
-﻿namespace QApp.Documentation
+﻿namespace EasyApp.Documentation
 {
-    public class OptionInfo
+    public class ArgumentInfo
     {
         public string Name
         {

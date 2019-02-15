@@ -1,8 +1,7 @@
-﻿using QApp.Util;
-using TWidgets.Core.Drawing;
+﻿using EasyApp.Util;
 using TWidgets.Widgets;
 
-namespace QApp.Widgets
+namespace EasyApp.Widgets
 {
     public class Header: Marquee
     {
@@ -12,11 +11,6 @@ namespace QApp.Widgets
             this.Margin.Top = 0;
             this.Padding.All = 1;
             this.Items = AssemblyDescription.Description;
-        }
-
-        public override void Draw(Graphics g)
-        {
-            base.Draw(g);
         }
     }
 }

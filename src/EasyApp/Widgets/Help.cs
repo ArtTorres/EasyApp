@@ -1,12 +1,12 @@
-﻿using QApp.Documentation;
-using QApp.Util;
+﻿using EasyApp.Documentation;
+using EasyApp.Util;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TWidgets.Core;
 using TWidgets.Core.Drawing;
+using TWidgets.Widgets;
 
-namespace QApp.Widgets
+namespace EasyApp.Widgets
 {
     public class Help : Widget
     {

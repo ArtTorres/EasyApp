@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;netstandard2.0;net40;net45</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <Version>0.2.0-alpha</Version>
+    <Authors>Arturo Torres</Authors>
+    <Company>Arturo Torres</Company>
+    <Description>A simple console framework.</Description>
+    <Copyright>Copyright ©2019 ArturoTorres</Copyright>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>console framework widgets</PackageTags>
+    <PackageReleaseNotes>Re-Brand
+Minor improvements</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/arttorres/EasyApp</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/arttorres/EasyApp</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/arttorres/EasyApp/master/LICENSE</PackageLicenseUrl>
+    <PackageId>EasyApp</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MagnetArgs" Version="0.2.4-beta" />
+    <PackageReference Include="TWidgets" Version="0.4.0-alpha" />
+  </ItemGroup>
+
+</Project>

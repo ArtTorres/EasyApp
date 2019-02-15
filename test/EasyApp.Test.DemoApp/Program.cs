@@ -1,25 +1,22 @@
-﻿using System;
+﻿using EasyApp.Documentation;
 using MagnetArgs;
-using QApp;
-using QApp.Documentation;
+using System;
 
-namespace QApp.Test.DemoApp
+namespace EasyApp.Test.DemoApp
 {
     class Program
     {
-        private class DemoOptions : MagnetOption
+        private class DemoOptions : MagnetSet
         {
             [Arg("directory", Alias = "dir"), IsRequired]
             [Help("Sets the input directory.", Example = "--directory <path>", Group = "Authentication", Order = 1)]
             public string Directory { get; set; }
         }
 
-        private class Application : QApplication
+        private class Application : EasyApp
         {
-            [OptionSet]
             private DemoOptions DemoOptions { get; set; }
 
-            [OptionSet]
             private ExampleOptions TaskOptions { get; set; }
 
             public override void ExecutionProcess()

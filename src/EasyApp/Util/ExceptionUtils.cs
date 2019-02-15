@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace QApp.Util
+namespace EasyApp.Util
 {
     public static class ExceptionUtils
     {
@@ -17,11 +17,10 @@ namespace QApp.Util
             for (int i = 0; i < properties.Length; i++)
             {
                 PropertyInfo propertyInfo = properties[i];
-                OptionSetAttribute attribute = GetAttribute<OptionSetAttribute>(propertyInfo);
 
-                if (null != attribute)
+                if (typeof(IMagnetSet).IsAssignableFrom(propertyInfo.PropertyType))
                 {
-                    var property = (IOption)propertyInfo.GetValue(obj, null);
+                    var property = (IMagnetSet)propertyInfo.GetValue(obj, null);
 
                     if (property.Exceptions.Count() > 0)
                         output.AddRange(property.Exceptions);

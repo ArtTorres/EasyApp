@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace QApp.Util
+namespace EasyApp.Util
 {
     internal class AssemblyDescription
     {
