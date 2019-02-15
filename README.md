@@ -1,1 +1,2 @@
-# QApp
+# EasyApp
+A simple console framework.
