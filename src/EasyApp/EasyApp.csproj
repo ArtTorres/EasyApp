@@ -3,20 +3,20 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;netstandard2.0;net40;net45</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>0.2.0.0</AssemblyVersion>
-    <Version>0.2.0-alpha</Version>
+    <AssemblyVersion>0.2.1.0</AssemblyVersion>
+    <Version>0.2.1-alpha</Version>
     <Authors>Arturo Torres</Authors>
     <Company>Arturo Torres</Company>
     <Description>A simple console framework.</Description>
     <Copyright>Copyright ©2019 ArturoTorres</Copyright>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>console framework widgets</PackageTags>
-    <PackageReleaseNotes>Re-Brand
-Minor improvements</PackageReleaseNotes>
+    <PackageReleaseNotes>Minor improvements</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/arttorres/EasyApp</RepositoryUrl>
     <PackageProjectUrl>https://github.com/arttorres/EasyApp</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/arttorres/EasyApp/master/LICENSE</PackageLicenseUrl>
     <PackageId>EasyApp</PackageId>
+    <FileVersion>0.2.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
