@@ -1,8 +1,8 @@
 namespace EasyApp.Events
 {
-    public class EasyMessage
+    public class Message
 	{
-		public MessageType MessageType
+		public MessageType Type
 		{
 			get;
 			set;

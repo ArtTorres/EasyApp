@@ -1,10 +1,9 @@
-
 using EasyApp.Events;
 using System;
 
 namespace EasyApp
 {
-    public abstract class EasyTask
+    public abstract class EasyTask : IEasyTask
     {
         public event EventHandler<MessageEventArgs> Started;
         public void OnStarted(string message, params object[] args)
@@ -72,11 +71,11 @@ namespace EasyApp
         public void OnNotification(MessageType type, string message, params object[] args)
         {
             this.Notification?.Invoke(
-                this, 
+                this,
                 new MessageEventArgs(
-                    type, 
-                    Priority.High, 
-                    message, 
+                    type,
+                    Priority.High,
+                    message,
                     args
                 )
             );
@@ -86,6 +85,10 @@ namespace EasyApp
             this.Notification?.Invoke(this, e);
         }
 
+        public virtual void BeforeStart() { }
+
         public abstract void Start();
+
+        public virtual void AfterCompleted() { }
     }
 }

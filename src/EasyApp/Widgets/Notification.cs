@@ -7,8 +7,8 @@ namespace EasyApp.Widgets
 {
     public class Notification : Widget
     {
-        private EasyMessage _message;
-        public EasyMessage Message
+        private Events.Message _message;
+        public Events.Message Message
         {
             get
             {
@@ -28,7 +28,7 @@ namespace EasyApp.Widgets
 
         public override void BeforeDraw()
         {
-            this.SetColor(_message.MessageType);
+            this.SetColor(_message.Type);
         }
 
         public override void Draw(Graphics g)
@@ -39,9 +39,9 @@ namespace EasyApp.Widgets
             ));
         }
 
-        private string FormatMessage(EasyMessage message)
+        private string FormatMessage(Events.Message message)
         {
-            switch (message.MessageType)
+            switch (message.Type)
             {
                 case MessageType.Data:
                 case MessageType.Resume:
@@ -55,7 +55,7 @@ namespace EasyApp.Widgets
                 default:
                     return string.Format(
                         "[{0}] {1}",
-                        message.MessageType.ToString().ToUpper(),
+                        message.Type.ToString().ToUpper(),
                         message.Text
                     );
             }
