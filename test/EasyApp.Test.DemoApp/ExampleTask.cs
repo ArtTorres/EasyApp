@@ -1,7 +1,8 @@
 ﻿using EasyApp.Documentation;
 using EasyApp.Events;
 using MagnetArgs;
-using System;
+using TWidgets;
+using TWidgets.Widgets;
 
 namespace EasyApp.Test.DemoApp
 {
@@ -12,19 +13,14 @@ namespace EasyApp.Test.DemoApp
         public string OutputDirectory { get; set; }
     }
 
-    class ExampleTask : EasyTask, IDisposable
+    class ExampleTask : EasyTask
     {
-        private ExampleOptions _options;
-
-        public ExampleTask(ExampleOptions options)
-        {
-            _options = options;
-        }
+        public ExampleOptions Options { get; set; }
 
         public override void Start()
         {
             this.OnStarted("Task Execution");
-            this.OnNotification(MessageType.Text, "Output Directory: {0}", _options.OutputDirectory);
+            this.OnNotification(MessageType.Text, "Output Directory: {0}", Options.OutputDirectory);
 
             for (int i = 0; i < 10;)
             {
@@ -35,8 +31,9 @@ namespace EasyApp.Test.DemoApp
             this.OnNotification(MessageType.Text, "End of application");
         }
 
-        public void Dispose()
+        public override void AfterCompleted()
         {
+            WidgetPlayer.Mount(new StopMessage("demo_stop") { Text = "-- Press Any Key --" });
         }
     }
 }

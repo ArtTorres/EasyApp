@@ -1,10 +1,10 @@
-﻿using MagnetArgs;
-using EasyApp.Events;
+﻿using EasyApp.Events;
+using MagnetArgs;
 using System;
 
 namespace EasyApp.Parsers
 {
-    public class MessagePriorityParser : IParser
+    public class PriorityParser : IParser
     {
         public object Parse(string value)
         {

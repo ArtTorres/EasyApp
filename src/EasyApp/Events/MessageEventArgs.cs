@@ -4,7 +4,7 @@ namespace EasyApp.Events
 {
     public class MessageEventArgs : EventArgs
     {
-        public EasyMessage Message
+        public Message Message
         {
             get;
             private set;
@@ -22,10 +22,10 @@ namespace EasyApp.Events
 
         public MessageEventArgs(string message, MessageType type = MessageType.Info, Priority priority = Priority.High)
         {
-            this.Message = new EasyMessage()
+            this.Message = new Message()
             {
                 Text = message,
-                MessageType = type,
+                Type = type,
                 Priority = priority
             };
         }
