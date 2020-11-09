@@ -1,5 +1,6 @@
 ﻿using EasyApp.Util;
-using TWidgets.Widgets;
+using TWidgets;
+using TWidgets.Core.Drawing;
 
 namespace EasyApp.Widgets
 {
@@ -11,6 +12,7 @@ namespace EasyApp.Widgets
             this.Margin.Top = 0;
             this.Padding.All = 1;
             this.Items = AssemblyDescription.Description;
+            this.TextAlign = Align.Center;
         }
     }
 }

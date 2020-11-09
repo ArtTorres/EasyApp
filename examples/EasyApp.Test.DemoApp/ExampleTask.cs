@@ -2,7 +2,6 @@
 using EasyApp.Events;
 using MagnetArgs;
 using TWidgets;
-using TWidgets.Widgets;
 
 namespace EasyApp.Test.DemoApp
 {
@@ -33,7 +32,7 @@ namespace EasyApp.Test.DemoApp
 
         public override void AfterCompleted()
         {
-            WidgetPlayer.Mount(new StopMessage("demo_stop") { Text = "-- Press Any Key --" });
+            TWidgetPlayer.Mount(new StopMessage("demo_stop") { Text = "-- Press Any Key To Finish --" });
         }
     }
 }
