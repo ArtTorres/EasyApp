@@ -1,11 +1,10 @@
 ﻿using EasyApp.Events;
+using TWidgets;
 using TWidgets.Core.Drawing;
-using TWidgets.Util;
-using TWidgets.Widgets;
 
 namespace EasyApp.Widgets
 {
-    public class Notification : Widget
+    public class Notification : TWidgetBase
     {
         private Events.Message _message;
         public Events.Message Message
@@ -21,7 +20,7 @@ namespace EasyApp.Widgets
             }
         }
 
-        public WidgetColor DefaultColor { get; set; } = WidgetColor.System;
+        public TWidgetColor DefaultColor { get; set; } = TWidgetColor.System;
 
         public Notification(string id) : base(id)
         { }
@@ -66,25 +65,25 @@ namespace EasyApp.Widgets
             switch (type)
             {
                 case MessageType.Error:
-                    this.ForegroundColor = WidgetColor.Red;
+                    this.ForegroundColor = TWidgetColor.Red;
                     break;
                 case MessageType.Warning:
                 case MessageType.Environment:
-                    this.ForegroundColor = WidgetColor.Yellow;
+                    this.ForegroundColor = TWidgetColor.Yellow;
                     break;
                 case MessageType.Data:
-                    this.ForegroundColor = WidgetColor.Green;
+                    this.ForegroundColor = TWidgetColor.Green;
                     break;
                 case MessageType.Resume:
-                    this.ForegroundColor = WidgetColor.Cyan;
+                    this.ForegroundColor = TWidgetColor.Cyan;
                     break;
                 case MessageType.Help:
                 case MessageType.Progress:
-                    this.ForegroundColor = WidgetColor.White;
+                    this.ForegroundColor = TWidgetColor.White;
                     break;
                 case MessageType.Arguments:
                 case MessageType.Highlight:
-                    this.ForegroundColor = WidgetColor.Magenta;
+                    this.ForegroundColor = TWidgetColor.Magenta;
                     break;
                 default:
                     this.ForegroundColor = this.DefaultColor;

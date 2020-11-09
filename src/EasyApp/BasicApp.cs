@@ -3,15 +3,13 @@ using EasyApp.Util;
 using EasyApp.Widgets;
 using System.Linq;
 using TWidgets;
-using TWidgets.Util;
-using TWidgets.Widgets;
 
 namespace EasyApp
 {
     public class BasicApp : BaseApp
     {
-        public Widget Header { get; set; }
-        public Widget Help { get; set; }
+        public TWidgetBase Header { get; set; }
+        public TWidgetBase Help { get; set; }
         public Notification Notification { get; set; }
         public ProgressChar Progress { get; set; }
 
@@ -30,18 +28,18 @@ namespace EasyApp
             this.Notification.Margin.Left = 1;
 
             this.Progress = new ProgressChar("easy_progress");
-            this.Progress.ForegroundColor = WidgetColor.White;
+            this.Progress.ForegroundColor = TWidgetColor.White;
             this.Progress.Margin.Left = 1;
         }
 
         public override void ShowHeader()
         {
-            WidgetPlayer.Mount(this.Header);
+            TWidgetPlayer.Mount(this.Header);
         }
 
         public override void ShowHelp()
         {
-            WidgetPlayer.Mount(this.Help);
+            TWidgetPlayer.Mount(this.Help);
         }
 
         public override bool ShowInputExceptions()
@@ -54,11 +52,11 @@ namespace EasyApp
                 var widget = new BulletList("easy_errors")
                 {
                     Items = errors,
-                    ForegroundColor = WidgetColor.Red
+                    ForegroundColor = TWidgetColor.Red
                 };
                 widget.Margin.All = 1;
 
-                WidgetPlayer.Mount(widget);
+                TWidgetPlayer.Mount(widget);
             }
 
             return found;
@@ -87,7 +85,7 @@ namespace EasyApp
 
                 if (!_prevProgress)
                 {
-                    WidgetPlayer.Mount(this.Progress);
+                    TWidgetPlayer.Mount(this.Progress);
                     _prevProgress = true;
                     _prevNotification = false;
                 }
@@ -98,7 +96,7 @@ namespace EasyApp
 
                 if (!_prevNotification)
                 {
-                    WidgetPlayer.Mount(this.Notification);
+                    TWidgetPlayer.Mount(this.Notification);
                     _prevNotification = true;
                     _prevProgress = false;
                 }

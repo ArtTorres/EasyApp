@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;netstandard2.0;net40;net45</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>0.2.1.0</AssemblyVersion>
-    <Version>0.2.1-alpha</Version>
+    <AssemblyVersion>0.2.2.0</AssemblyVersion>
+    <Version>0.2.2-alpha</Version>
     <Authors>Arturo Torres</Authors>
     <Company>Arturo Torres</Company>
     <Description>A simple console framework.</Description>
@@ -16,12 +16,12 @@
     <PackageProjectUrl>https://github.com/arttorres/EasyApp</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/arttorres/EasyApp/master/LICENSE</PackageLicenseUrl>
     <PackageId>EasyApp</PackageId>
-    <FileVersion>0.2.1.0</FileVersion>
+    <FileVersion>0.2.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MagnetArgs" Version="0.2.4-beta" />
-    <PackageReference Include="TWidgets" Version="0.4.0-alpha" />
+    <PackageReference Include="TWidgets" Version="0.6.0-beta" />
   </ItemGroup>
 
 </Project>

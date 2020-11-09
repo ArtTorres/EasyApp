@@ -3,12 +3,12 @@ using EasyApp.Util;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TWidgets;
 using TWidgets.Core.Drawing;
-using TWidgets.Widgets;
 
 namespace EasyApp.Widgets
 {
-    public class Help : Widget
+    public class Help : TWidgetBase
     {
         public string AssemblyFile { get; private set; }
         public IEnumerable<HelpAttribute> Items { get; private set; }
